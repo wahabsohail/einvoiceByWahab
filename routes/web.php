@@ -37,8 +37,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 // userController
 
-Route:: resource('/user', 'userController');
-Route:: resource('/contact', 'contactController');
-Route:: resource('/invoice', 'invoiceController');
-Route:: resource('/label', 'labelController');
-Route:: resource('/payment', 'paymentController');
+Route:: resource('user', 'userController');
+Route:: resource('contact', 'contactController');
+Route:: resource('invoice', 'invoiceController');
+Route:: resource('label', 'labelController');
+Route:: resource('payment', 'paymentController');

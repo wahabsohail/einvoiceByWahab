@@ -6,7 +6,7 @@
         @include('sidebar')
         <div class="col-md-9" class="col-sm-9" class="col-lg-9">
             <div class="panel panel-default">
-                <div class="panel-heading" >Add Contact</div>
+                <div class="panel-heading" >Update Contact</div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -16,7 +16,9 @@
                     @endif
                     
 
-                    <form class="form-horizontal" method='post' action={{url('contact')}}>
+                    <form class="form-horizontal" method='post' 
+                    action="{{url('contact',$crud['id'])}}">
+                     <input type="hidden" name="_method" value="put">
                         {{csrf_field()}}
 
                         {{-- <div class="form-group">
@@ -37,14 +39,15 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" class="control-label col-md-2" class="control-label col-lg-2" for="name">Name:</label>
                             <div class="col-sm-5" class="col-md-5" class="col-lg-5">
-                                <input type="text" class="form-control" id="name" placeholder="Name" name='name'>
+                                <input type="text" class="form-control" id="name" placeholder="Name" name='name' value="{{$crud['Contact_Name']}}" >
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-sm-2" class="control-label col-md-2" class="control-label col-lg-2" for="BusinessName">Business Name</label>
                             <div class="col-sm-5" class="col-md-5" class="col-lg-5">
-                                <input type="text" class="form-control" id="BusinessName" placeholder="Business Name" name="businessName">
+                                <input type="text" class="form-control" id="BusinessName" placeholder="Business Name" name="businessName" 
+                                value="{{$crud['Busniness_Name']}}">
                             </div>
                         </div>
 
@@ -53,21 +56,23 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" class="control-label col-md-2" class="control-label col-lg-2" for="email">Email</label>
                             <div class="col-sm-5" class="col-md-5" class="col-lg-5">
-                                <input type="email" class="form-control" id="email" placeholder="email" name="email">
+                                <input type="email" class="form-control" id="email" placeholder="email" name="email" value="{{$crud['Email']}}">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-sm-2"  class="control-label col-md-2" class="control-label col-lg-2"for="contact">Contact</label>
                             <div class="col-sm-5" class="col-md-5" class="col-lg-5">
-                                <input type="text" class="form-control" id="contact" placeholder="contact" name="contact">
+                                <input type="text" class="form-control" id="contact" placeholder="contact" name="contact" 
+                                value="{{$crud['Contact_Number']}}">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-sm-2" class="control-label col-md-2" class="control-label col-lg-2" for="address">Address</label>
                             <div class="col-sm-5" class="col-md-5" class="col-lg-5">
-                                <input type="text" class="form-control" id="adress" placeholder="adress" name="adress">
+                                <input type="text" class="form-control" id="adress" placeholder="adress" name="adress" 
+                                value="{{$crud['Contact_Address']}}">
                             </div>
                         </div>
 
@@ -91,7 +96,7 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-5" class="col-sm-8 col-sm-offset-5" class="col-lg-8 col-lg-offset-5">
                                 <button type="submit" class="btn btn-primary">
-                                    create
+                                    Update
                                 </button>
                             </div>
                         </div>

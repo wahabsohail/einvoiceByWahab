@@ -3,9 +3,8 @@
 namespace eInvoice\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\addUser;
-use DB;
+use eInvoice\addUser;
+
 
 class userController extends Controller
 {
@@ -22,7 +21,7 @@ class userController extends Controller
 
     public function index()
     {
-        $viewUser=DB::table('add_users')->get();
+        $viewUser= addUser::all()->toArray();
         return view('viewAlluser', compact('viewUser'));
     }
 
@@ -44,18 +43,23 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
-      // $user = user::create(['name' => $request->input('User_Name'), 
-      //   'designation' => $request->input('User_Designation'), 
-      //   'email'=>$request->input('Email'), 
-      //   'password'=>$request->input('Password')  ]);  
-        $data = [
-            'User_Name' => $request->input('name'),
-            'Email' => $request->input('email'),
-            'Password' => $request->input('password'),
-            'User_Designation'=>$request->input('designation')
-        ];
+      $user = new addUser(['User_Name' => $request->get('name'), 
+        'User_Designation' => $request->get('designation'), 
+        'Email'=>$request->get('email'), 
+        'Password'=>$request->get('password')]);
 
-        DB::table('add_users')->insert($data);
+      $user->save();
+
+        return redirect('user');
+
+        // $data = [
+        //     'User_Name' => $request->input('name'),
+        //     'Email' => $request->input('email'),
+        //     'Password' => $request->input('password'),
+        //     'User_Designation'=>$request->input('designation')
+        // ];
+
+        // DB::table('add_users')->insert($data);
     }
     
 
@@ -78,7 +82,15 @@ class userController extends Controller
      */
     public function edit($id)
     {
-        //
+                 $viewUser=addUser::find($id);
+
+                 return view('editUser',compact('viewUser','id'));
+
+        // $editUser=DB::table('add_users')->where('id','=',$id)->first();
+        // return view('editUser', compact('editUser'));
+
+
+
     }
 
     /**
@@ -90,7 +102,26 @@ class userController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+          $viewUser = addUser::find($id);
+        $viewUser->User_Name = $request->get('name');
+        $viewUser->Email = $request->get('email');
+        $viewUser->Password = $request->get('password');
+        $viewUser->User_Designation = $request->get('designation');
+
+        $viewUser->save();
+        return redirect('user');
+
+
+        // $data = [
+        //     'User_Name' => $request->input('name'),
+        //     'Email' => $request->input('email'),
+        //     'Password' => $request->input('password'),
+        //     'User_Designation'=>$request->input('designation')
+        // ];
+
+        // DB::table('add_users')->where('id','=',$id)->update($data);
+        // return redirect('user');
     }
 
     /**
@@ -101,6 +132,9 @@ class userController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $viewUser=addUser::find($id);
+       $viewUser->delete();
+       return redirect('user');
+
     }
 }

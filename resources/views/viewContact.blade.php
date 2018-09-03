@@ -19,26 +19,47 @@
                         <thead>
                             <th>Name</th>
                             <th>Business Name</th>
-                            <th>Label Name</th>
+                            {{-- <th>Label Name</th> --}}
                             <th>Contact</th>
                             <th>Email</th>
-                            <th>Status</th>
-                            <th>Recive Payments</th>
-                            <th>Action</th>
+                            {{-- <th>Status</th>
+                            <th>Recive Payments</th> --}}
+                            <th>Address</th>
+                            <th colspan="2" style="text-align: center;">Action</th>
                         </thead>
+                        @foreach($crud as $crud)
                          <tbody>
                             <tr>
-                                <td>Wahab</td>
-                                <td>abc</td>
-                                <td>abcd</td>
-                                <td>0321557</td>
-                                <td>Wahabsohail@gmail.com</td>
+                                <td>{{$crud['Contact_Name']}}</td>
+                                <td>{{$crud['Busniness_Name']}}</td>
+                                <td>{{$crud['Contact_Number']}}</td>
+                                <td>{{$crud['Email']}}</td>
+                                <td>{{$crud['Contact_Address']}}</td>
+                               {{--  <td>Wahabsohail@gmail.com</td>
                                 <td>new</td>
-                                <td>xyz</td>
-                                <td><button type="button" class="btn btn-warning">Edit</button></td>
+                                <td>xyz</td> --}}
+                                <td>
+                                    <a href="{{action('contactController@edit',$crud['id'])}}" type="button" class="btn btn-info">Edit</a>
+
+                                </td>
+                                <td>
+                                    <form 
+                                    action="{{url('contact',$crud['id'])}}" 
+                                    method="post">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="_method" value="delete">
+                                        <button class="btn btn-danger" type="submit" 
+                                        value="delete">
+                                            Delete
+                                        </button>
+                                        
+                                    </form>
+                                        
+                                </td>
                                 
                             </tr>
                         </tbody> 
+                        @endforeach
                     </table>
 
                     

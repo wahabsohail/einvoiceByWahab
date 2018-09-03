@@ -21,16 +21,35 @@
                             <th>Designation</th>
                             <th>Email</th>
                             <th>Password</th>
-                            <th>Action</th>
+                            <th colspan="2" style="text-align: center;">Action</th>
                         </thead>
                         @foreach($viewUser as $viewUser)
                         <tbody>
                             <tr>
-                                <td>{{$viewUser->User_Name}}</td>
-                                <td>{{$viewUser->User_Designation}}</td>
-                                <td>{{$viewUser->Email}}</td>
-                                <td>{{$viewUser->Password}}</td>
-                                <td><button type="button" class="btn btn-danger">Edit</button></td>
+                                <td>{{$viewUser['User_Name']}}</td>
+                                <td>{{$viewUser['User_Designation']}}</td>
+                                <td>{{$viewUser['Email']}}</td>
+                                <td>{{$viewUser['Password']}}</td>
+
+                                <td>
+                                    <a href="{{action('userController@edit',$viewUser['id'])}}" type="button" class="btn btn-info">Edit</a>
+
+                                </td>
+
+                                <td>
+                                    <form 
+                                    action="{{url('user',$viewUser['id'])}}" 
+                                    method="post">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="_method" value="delete">
+                                        <button class="btn btn-danger" type="submit" 
+                                        value="delete">
+                                            Delete
+                                        </button>
+                                        
+                                    </form>
+                                        
+                                </td>
                             </tr>
                         </tbody>
                          @endforeach

@@ -21,7 +21,8 @@
 
                     <form class="form-inline">
                         {{-- select label input --}}
-                        <div class="form-group">
+                        
+                        {{-- <div class="form-group">
                           <div class="col-sm-6">  <label for="Select Label">Select Label</label></div>
                             <div class="col-sm-3" >
                                  <select class="form-control" id="selectLabel">
@@ -32,9 +33,11 @@
                                     <option value="3">complete</option>
                                  </select>
                             </div>
-                        </div>
+                        </div> --}}
+
                          {{-- select custom input --}}
-                         <div class="form-group">
+
+                         {{-- <div class="form-group">
                             <label class="col-sm-6" for="select Customer">Select Customer </label>
                             <div class="col-sm-3">
                                 <select class="form-control" id="selectCustomer">
@@ -45,7 +48,8 @@
                                 </select>
                             </div>
                              
-                         </div><br><br><br>
+                         </div><br><br><br> --}}
+
                          {{-- Invoice Number --}}
 
                          <div class="form-group">
