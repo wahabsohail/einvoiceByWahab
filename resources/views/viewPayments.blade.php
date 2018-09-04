@@ -17,27 +17,43 @@
 
                     <table class="table table-bordered">
                         <thead>
-                            <th>sr</th>
-                            <th>Item</th>
-                            <th>Qty</th>
-                            <th>Unit Price</th>
-                            <th>Total</th>
-                            <th>Discount</th>
-                            <th>Net Total</th>
-                            <th>Status</th>
+                            <th>Amount</th>
+                            <th>Recevied_Payments</th>
+                            <th>Remaining_Payments</th>
+                            <th>Remarks</th>
+                            <th colspan="2" style="text-align: center;">Action</th>
+                            
                         </thead>
+                        @foreach($crud as $crud)
+
                         <tbody>
                             <tr>
-                                <td>abc</td>
-                                <td>new</td>
-                                <td>xyz</td>
-                                <td>xyz</td>
-                                <td>xyz</td>
-                                <td>xyz</td>
-                                <td>xyz</td>
-                                <td>xyz</td>
+                                <td>{{$crud['Amount']}}</td>
+                                <td>{{$crud['Recevied_Payments']}}</td>
+                                <td>{{$crud['Remaining_Payments']}}</td>
+                                <td>{{$crud['Remarks']}}</td>
+                                <td>
+                                    <a href="{{action('paymentController@edit',$crud['id'])}}" 
+                                    type="button" class="btn btn-info">Edit</a>
+                                </td>
+                                <td>
+                                    <form 
+                                    action="{{url('payment',$crud['id'])}}" 
+                                    method="post">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="_method" value="delete">
+                                        <button class="btn btn-danger" type="submit" 
+                                        value="delete">
+                                            Delete
+                                        </button>
+                                        
+                                    </form>
+                                        
+                                </td>
+                                
                             </tr>
                         </tbody>
+                        @endforeach
                     </table>
 
                     

@@ -13,8 +13,8 @@ class paymentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('viewPayments');
+    {   $crud=payment::all()->toArray();
+        return view('viewPayments',compact('crud'));
     }
 
     /**
@@ -64,7 +64,8 @@ class paymentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $crud=payment::find($id);
+        return view('editPayments',compact('crud','id'));
     }
 
     /**
@@ -76,7 +77,14 @@ class paymentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $crud=payment::find($id);
+        $crud->Amount=$request->get('amount');
+        $crud->Recevied_Payments=$request->get('received');
+        $crud->Remaining_Payments=$request->get('remaining');
+        $crud->Remarks=$request->get('remark');
+
+        $crud->save();
+        return redirect('payment');
     }
 
     /**
@@ -87,6 +95,8 @@ class paymentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $crud=payment::find($id);
+        $crud->delete();
+        return redirect('payment');
     }
 }
