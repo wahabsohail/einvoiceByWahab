@@ -13,7 +13,7 @@ class invoiceController extends Controller
      */
     public function index()
     {
-        //
+        return view('viewInvoice');
     }
 
     /**

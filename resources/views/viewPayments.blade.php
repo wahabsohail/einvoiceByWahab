@@ -6,7 +6,7 @@
         @include('sidebar')
         <div class="col-md-9" class="col-sm-9" class="col-lg-9">
             <div class="panel panel-default">
-                <div class="panel-heading" style="text-align: center;">View Invoice</div>
+                <div class="panel-heading" style="text-align: center;">View Payments</div>
 
                 <div class="panel-body">
                     @if (session('status'))

@@ -10,9 +10,11 @@
             <li><a href="{{url('contact/create')}}">Add Contact</a></li>
             <li><a href="{{url('/contact')}}">View All contact</a></li>
             <li><a href="{{url('invoice/create')}}">Generate Invoice</a></li>
-            <li><a href="#">Manage Invoice</a></li>
+            <li><a href="{{url('invoice')}}">Manage Invoice</a></li>
             <li><a href="#">Manage Lables</a></li>
-            <li><a href="#">Manage Payments</a></li>
+            <li><a href="{{url('payment/create')}}">Recive Payment</a></li>
+            <li><a href="{{url('payment')}}">Manage Payments</a></li>
+
           </ul>
         </div>
     </div>

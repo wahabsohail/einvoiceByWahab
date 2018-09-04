@@ -3,6 +3,7 @@
 namespace eInvoice\Http\Controllers;
 
 use Illuminate\Http\Request;
+Use eInvoice\payment;
 
 class paymentController extends Controller
 {
@@ -24,8 +25,7 @@ class paymentController extends Controller
     public function create()
     {
         return view('receivePayment');
-});
-    }
+ }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +35,14 @@ class paymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $crud=new payment(['Amount'=>$request->get('amount'),
+            'Recevied_Payments'=>$request->get('received'),
+            'Remaining_Payments'=>$request->get('remaining'),
+            'Remarks'=>$request->get('remark')
+        ]);
+
+        $crud->save();
+        return redirect('payment');
     }
 
     /**

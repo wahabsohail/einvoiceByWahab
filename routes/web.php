@@ -15,9 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/viewInvoice', function () {
-    return view('viewInvoice');
-});
+// Route::get('/viewInvoice', function () {
+//     return view('viewInvoice');
+// });
 
 Route::get('/viewPayments', function () {
     return view('viewPayments');
